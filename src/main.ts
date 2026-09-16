@@ -9,7 +9,6 @@ async function bootstrapServer(): Promise<Handler> {
   if (!cachedServer) {
     const nestApp = await NestFactory.create(AppModule);
     
-    nestApp.setGlobalPrefix('api');
     nestApp.enableCors();
 
     await nestApp.init();
