@@ -6,7 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "engines": {
-    "node": "26.8.2" 
+    "node": "24.x" 
   },
   "scripts": {
     "prisma:client": "rm -rf prisma/models && mkdir prisma/models && node scripts/combine-schemas.js && npx prisma generate",
