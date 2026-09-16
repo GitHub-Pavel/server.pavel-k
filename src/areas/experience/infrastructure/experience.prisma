@@ -1,0 +1,14 @@
+model Experience {
+  id            String      @id @default(uuid(7))
+  
+  company       String
+  position      String
+  startedAt     DateTime    @db.Date
+  endedAt       DateTime    @db.Date
+  achievements  String
+
+  createdAt     DateTime    @default(now())
+
+  portfolioId   String
+  portfolio     Portfolio   @relation(fields: [portfolioId], references: [id])
+}

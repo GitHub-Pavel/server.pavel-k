@@ -1,0 +1,19 @@
+services:
+  database:
+    image: postgis/postgis:18-3.6-alpine
+    restart: unless-stopped
+    ports:
+      - ${PGHOST}:${PGPORT}:5432
+    environment:
+      POSTGRES_USER: ${PGUSER}
+      POSTGRES_PASSWORD: ${PGPASSWORD}
+      POSTGRES_DB: ${PGDB}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      retries: 5
+
+volumes:
+  pgdata: {}
