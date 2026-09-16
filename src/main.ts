@@ -31,10 +31,10 @@ export const handler: Handler = async (
 if (process.env.NODE_ENV !== 'production') {
   async function bootstrapLocal() {
     const app = await NestFactory.create(AppModule);
-    app.setGlobalPrefix('api');
     app.enableCors();
-    await app.listen(process.env.PORT || 3000);
-    console.log(`🚀 Application is running on: http://localhost:3000/api`);
+    const port = process.env.PORT || 3000;
+    await app.listen(port);
+    console.log(`🚀 Application is running on: http://localhost:${port}/`);
   }
   bootstrapLocal();
 }
