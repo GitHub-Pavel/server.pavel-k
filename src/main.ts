@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { configure as serverlessExpress } from '@vendia/serverless-express';
+import serverlessExpress from '@vendia/serverless-express';
 import { Callback, Context, Handler } from 'aws-lambda';
 
 let cachedServer: Handler;
@@ -8,9 +8,7 @@ let cachedServer: Handler;
 async function bootstrapServer(): Promise<Handler> {
   if (!cachedServer) {
     const nestApp = await NestFactory.create(AppModule);
-    
     nestApp.enableCors();
-
     await nestApp.init();
     
     const expressApp = nestApp.getHttpAdapter().getInstance();
@@ -19,13 +17,9 @@ async function bootstrapServer(): Promise<Handler> {
   return cachedServer;
 }
 
-export const handler: Handler = async (
-  event: any,
-  context: Context,
-  callback: Callback,
-) => {
-  const server = await bootstrapServer();
-  return server(event, context, callback);
+export const handler: Handler = async (event: any, context: Context, callback: Callback) => {
+  cachedServer = cachedServer ?? (await bootstrapServer());
+  return cachedServer(event, context, callback);
 };
 
 if (process.env.NODE_ENV !== 'production') {
