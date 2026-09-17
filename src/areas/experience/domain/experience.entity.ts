@@ -21,7 +21,7 @@ export class Experience extends AggregateRoot {
     }
 
     static fromJSON(json: Record<string, unknown>): Experience {
-        if (!json.id || !json.portfolioId || !json.company || !json.position || !json.achievements || !json.startDate || !json.endDate) {
+        if (!json.id || !json.portfolioId || !json.company || !json.position || !json.achievements || !json.startedAt || !json.endedAt) {
             throw ExperienceDomainError.InvalidJSON();
         }
 
@@ -31,8 +31,8 @@ export class Experience extends AggregateRoot {
             new String(json.company),
             new String(json.position),
             new String(json.achievements),
-            DateValueObject.create(json.startDate),
-            DateValueObject.create(json.endDate),
+            DateValueObject.create(json.startedAt),
+            DateValueObject.create(json.endedAt),
         );
     }
 
