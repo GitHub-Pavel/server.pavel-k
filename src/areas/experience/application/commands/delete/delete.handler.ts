@@ -16,7 +16,7 @@ export class ExperienceDeleteCommandHandler implements ICommandHandler<Experienc
             return Result.Err(AppError.create('Experience not found'));
         }
 
-        const result = Result.fromCatch<void, AppError>(experience.delete);
+        const result = Result.fromCatch<void, AppError>(() => experience.delete());
 
         if (result.isErr) {
             return result;

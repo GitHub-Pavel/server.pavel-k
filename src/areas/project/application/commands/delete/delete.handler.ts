@@ -16,7 +16,7 @@ export class ProjectDeleteCommandHandler implements ICommandHandler<ProjectDelet
             return Result.Err(AppError.create('Project not found'));
         }
 
-        const result = Result.fromCatch<void, AppError>(project.delete);
+        const result = Result.fromCatch<void, AppError>(() => project.delete());
 
         if (result.isErr) {
             return result;

@@ -16,7 +16,7 @@ export class PortfolioDeleteCommandHandler implements ICommandHandler<PortfolioD
             return Result.Err(AppError.create('Portfolio not found'));
         }
 
-        const result = Result.fromCatch<void, AppError>(portfolio.delete);
+        const result = Result.fromCatch<void, AppError>(() => portfolio.delete());
 
         if (result.isErr) {
             return result;

@@ -16,7 +16,7 @@ export class SkillDeleteCommandHandler implements ICommandHandler<SkillDeleteCom
             return Result.Err(AppError.create('Skill not found'));
         }
 
-        const result = Result.fromCatch<void, AppError>(skill.delete);
+        const result = Result.fromCatch<void, AppError>(() => skill.delete());
 
         if (result.isErr) {
             return result;
