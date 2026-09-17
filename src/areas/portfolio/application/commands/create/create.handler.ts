@@ -6,7 +6,7 @@ import { Inject } from "@nestjs/common";
 import { IPortfolioRepository } from "../../ports";
 import { ID } from "src/shared/value-objects";
 import { v7 } from "uuid";
-import { Portfolio } from "src/areas/portfolio/domain";
+import { Portfolio } from "../../../domain";
 
 @CommandHandler(PortfolioCreateCommand)
 export class PortfolioCreateCommandHandler implements ICommandHandler<PortfolioCreateCommand, Result<string, AppError>> {

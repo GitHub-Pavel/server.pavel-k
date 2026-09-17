@@ -1,8 +1,8 @@
 import { ObjectType, Field, ID, Directive } from '@nestjs/graphql';
 import { PortfolioDto } from '../../../application/dtos';
-import { SkillModel } from 'src/areas/skill';
-import { ExperienceModel } from 'src/areas/experience';
-import { ProjectModel } from 'src/areas/project';
+import { SkillModel } from '../../../../skill';
+import { ExperienceModel } from '../../../../experience';
+import { ProjectModel } from '../../../../project';
 
 @ObjectType('Portfolio', { description: 'Model of portfolio for GraphQL API' })
 @Directive('@key(fields: "id")')

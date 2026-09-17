@@ -1,6 +1,6 @@
 import { Inject } from "@nestjs/common";
 import { EventsHandler, IEventHandler } from "@nestjs/cqrs";
-import { PortfolioDeletedEvent } from "src/areas/portfolio";
+import { PortfolioDeletedEvent } from "../../../portfolio";
 import { IProjectRepository } from "../ports";
 
 @EventsHandler(PortfolioDeletedEvent)

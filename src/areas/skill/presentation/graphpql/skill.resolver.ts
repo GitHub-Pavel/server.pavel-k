@@ -15,13 +15,13 @@ export class SkillResolver {
         @Inject(QueryBus) private readonly queryBus: QueryBus
     ) {}
 
-    @Query(() => [SkillModel], { name: 'skills' })
-    async getSkills(
-        @Args('portfolioId') portfolioId: string
-    ) {
-        const result = await this.queryBus.execute(SkillFindManyQuery.create(portfolioId));
-        return result.unwrap().map(SkillModel.fromDto);
-    }
+    // @Query(() => [SkillModel], { name: 'skills' })
+    // async getSkills(
+    //     @Args('portfolioId') portfolioId: string
+    // ) {
+    //     const result = await this.queryBus.execute(SkillFindManyQuery.create(portfolioId));
+    //     return result.unwrap().map(SkillModel.fromDto);
+    // }
 
     @Mutation(() => CreatedModel, { name: 'createSkill' })
     async createUser(
@@ -31,11 +31,11 @@ export class SkillResolver {
         return CreatedModel.create(skillResult.unwrap());
     }
 
-    @Mutation(() => OperationStatusModel, { name: 'deleteSkill' })
-    async deleteSkill(
-        @Args('skillId') skillId: string
-    ) {
-        const result = await this.commandBus.execute(SkillDeleteCommand.create(skillId));
-        return OperationStatusModel.fromResult(result);
-    }
+    // @Mutation(() => OperationStatusModel, { name: 'deleteSkill' })
+    // async deleteSkill(
+    //     @Args('skillId') skillId: string
+    // ) {
+    //     const result = await this.commandBus.execute(SkillDeleteCommand.create(skillId));
+    //     return OperationStatusModel.fromResult(result);
+    // }
 }

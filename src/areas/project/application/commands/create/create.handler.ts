@@ -5,7 +5,7 @@ import { AppError } from "src/shared/app-error";
 import { IProjectRepository } from "../../ports";
 import { Inject } from "@nestjs/common";
 import { Project } from "../../../domain";
-import { PortfolioFindFirstQuery } from "src/areas/portfolio";
+import { PortfolioFindFirstQuery } from "../../../../portfolio";
 import { v7 } from "uuid";
 import { ID } from "src/shared/value-objects";
 

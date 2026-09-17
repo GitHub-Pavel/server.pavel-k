@@ -4,8 +4,8 @@ import { AsyncResult, Result } from "src/shared/result";
 import { AppError } from "src/shared/app-error";
 import { ISkillRepository } from "../../ports";
 import { Inject } from "@nestjs/common";
-import { Skill } from "src/areas/skill/domain";
-import { PortfolioFindFirstQuery } from "src/areas/portfolio";
+import { Skill } from "../../../domain";
+import { PortfolioFindFirstQuery } from "../../../../portfolio";
 import { v7 } from "uuid";
 import { ID } from "src/shared/value-objects";
 

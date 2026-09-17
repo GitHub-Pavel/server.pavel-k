@@ -15,27 +15,27 @@ export class ExperienceResolver {
         @Inject(QueryBus) private readonly queryBus: QueryBus
     ) {}
 
-    @Query(() => [ExperienceModel], { name: 'experiences' })
-    async getExperiences(
-        @Args('portfolioId') portfolioId: string
-    ) {
-        const result = await this.queryBus.execute(ExperienceFindManyQuery.create(portfolioId));
-        return result.unwrap().map(ExperienceModel.fromDto);
-    }
+    // @Query(() => [ExperienceModel], { name: 'experiences' })
+    // async getExperiences(
+    //     @Args('portfolioId', { type: () => String }) portfolioId: string
+    // ) {
+    //     const result = await this.queryBus.execute(ExperienceFindManyQuery.create(portfolioId));
+    //     return result.unwrap().map(ExperienceModel.fromDto);
+    // }
 
-    @Mutation(() => CreatedModel, { name: 'createExperience' })
-    async createExperience(
-        @Args('input') input: CreateExperienceInput
-    ) {
-        const result = await this.commandBus.execute(ExperienceCreateCommand.create(input));
-        return CreatedModel.create(result.unwrap());
-    }
+    // @Mutation(() => CreatedModel, { name: 'createExperience' })
+    // async createExperience(
+    //     @Args('input', { type: () => CreateExperienceInput }) input: CreateExperienceInput
+    // ) {
+    //     const result = await this.commandBus.execute(ExperienceCreateCommand.create(input));
+    //     return CreatedModel.create(result.unwrap());
+    // }
 
-    @Mutation(() => OperationStatusModel, { name: 'deleteExperience' })
-    async deleteExperience(
-        @Args('experienceId') experienceId: string
-    ) {
-        const result = await this.commandBus.execute(ExperienceDeleteCommand.create(experienceId));
-        return OperationStatusModel.fromResult(result);
-    }
+    // @Mutation(() => OperationStatusModel, { name: 'deleteExperience' })
+    // async deleteExperience(
+    //     @Args('experienceId', { type: () => String }) experienceId: string
+    // ) {
+    //     const result = await this.commandBus.execute(ExperienceDeleteCommand.create(experienceId));
+    //     return OperationStatusModel.fromResult(result);
+    // }
 }

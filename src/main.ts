@@ -1,11 +1,10 @@
 import { bootstrap } from './bootstrap';
 
-async function bootstrapLocal() {
+async function start() {
   const app = await bootstrap();
-  const port = process.env.PORT || 3000;
-  await app.listen(port, () => {
-    console.log(`🚀 Application is running on: http://localhost:${port}/`);
+  await app.listen(process.env.PORT ?? 3000, () => {
+    console.log(`Server is running on port ${process.env.PORT ?? 3000}`);
+    console.log(`GraphQL Playground: http://localhost:${process.env.PORT ?? 3000}/graphql`);
   });
 }
-
-bootstrapLocal();
+start();

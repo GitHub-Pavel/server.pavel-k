@@ -1,15 +1,15 @@
 import { Inject } from "@nestjs/common";
 import { PortfolioModel } from "./models";
-import { SkillModel } from 'src/areas/skill';
+import { SkillModel } from '../../../skill';
 import { CreatePortfolioInput } from "./inputs";
 import { CommandBus, QueryBus } from "@nestjs/cqrs";
-import { SkillFindManyQuery } from 'src/areas/skill';
+import { SkillFindManyQuery } from '../../../skill';
 import { CreatedModel, OperationStatusModel } from "src/shared/graphql";
 import { PortfolioFindFirstQuery } from "../../application/queries";
 import { PortfolioCreateCommand, PortfolioDeleteCommand } from "../../application/commands";
 import { Args, Mutation, Parent, Query, ResolveField, Resolver, ResolveReference } from "@nestjs/graphql";
-import { ExperienceFindManyQuery, ExperienceModel } from "src/areas/experience";
-import { ProjectFindManyQuery, ProjectModel } from "src/areas/project";
+import { ExperienceFindManyQuery, ExperienceModel } from "../../../experience";
+import { ProjectFindManyQuery, ProjectModel } from "../../../project";
 
 
 @Resolver(() => PortfolioModel)
@@ -48,17 +48,17 @@ export class PortfolioResolver {
         return PortfolioModel.fromDto(result.unwrap());
     }
 
-    @Mutation(() => CreatedModel, { name: 'createPortfolio' })
-    async createUser(
-        @Args('input') input: CreatePortfolioInput
-    ) {
-        const result = await this.commandBus.execute(PortfolioCreateCommand.create(input));
-        return CreatedModel.create(result.unwrap());
-    }
+    // @Mutation(() => CreatedModel, { name: 'createPortfolio' })
+    // async createUser(
+    //     @Args('input', { type: () => CreatePortfolioInput }) input: CreatePortfolioInput
+    // ) {
+    //     const result = await this.commandBus.execute(PortfolioCreateCommand.create(input));
+    //     return CreatedModel.create(result.unwrap());
+    // }
 
-    @Mutation(() => OperationStatusModel, { name: 'deletePortfolio' })
-    async deletePortfolio() {
-        const result = await this.commandBus.execute(PortfolioDeleteCommand.create());
-        return OperationStatusModel.fromResult(result);
-    }
+    // @Mutation(() => OperationStatusModel, { name: 'deletePortfolio' })
+    // async deletePortfolio() {
+    //     const result = await this.commandBus.execute(PortfolioDeleteCommand.create());
+    //     return OperationStatusModel.fromResult(result);
+    // }
 }

@@ -1,0 +1,14 @@
+{
+    "version": 3,
+    "functions": {
+        "server.ts": {
+            "runtime": "nodejs24.x"
+        }
+    },
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "server.ts"
+        }
+    ]
+}
