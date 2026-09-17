@@ -8,7 +8,6 @@
   "scripts": {
     "prisma:client": "rm -rf prisma/models && mkdir prisma/models && node scripts/combine-schemas.js && npx prisma generate",
     "prisma:watch": "nodemon --watch src/areas -e prisma --exec \"npm run prisma:client\"",
-    "postinstall": "npm run prisma:client",
     "build": "nest build",
     "deploy": "nest deploy",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",

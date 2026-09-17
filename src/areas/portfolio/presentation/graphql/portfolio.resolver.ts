@@ -48,17 +48,17 @@ export class PortfolioResolver {
         return PortfolioModel.fromDto(result.unwrap());
     }
 
-    // @Mutation(() => CreatedModel, { name: 'createPortfolio' })
-    // async createUser(
-    //     @Args('input', { type: () => CreatePortfolioInput }) input: CreatePortfolioInput
-    // ) {
-    //     const result = await this.commandBus.execute(PortfolioCreateCommand.create(input));
-    //     return CreatedModel.create(result.unwrap());
-    // }
+    @Mutation(() => CreatedModel, { name: 'createPortfolio' })
+    async createUser(
+        @Args('input', { type: () => CreatePortfolioInput }) input: CreatePortfolioInput
+    ) {
+        const result = await this.commandBus.execute(PortfolioCreateCommand.create(input));
+        return CreatedModel.create(result.unwrap());
+    }
 
-    // @Mutation(() => OperationStatusModel, { name: 'deletePortfolio' })
-    // async deletePortfolio() {
-    //     const result = await this.commandBus.execute(PortfolioDeleteCommand.create());
-    //     return OperationStatusModel.fromResult(result);
-    // }
+    @Mutation(() => OperationStatusModel, { name: 'deletePortfolio' })
+    async deletePortfolio() {
+        const result = await this.commandBus.execute(PortfolioDeleteCommand.create());
+        return OperationStatusModel.fromResult(result);
+    }
 }

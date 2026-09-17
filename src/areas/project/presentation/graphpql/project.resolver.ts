@@ -15,27 +15,27 @@ export class ProjectResolver {
         @Inject(QueryBus) private readonly queryBus: QueryBus
     ) {}
 
-    // @Query(() => [ProjectModel], { name: 'projects' })
-    // async getProjects(
-    //     @Args('portfolioId', { type: () => String }) portfolioId: string
-    // ) {
-    //     const result = await this.queryBus.execute(ProjectFindManyQuery.create(portfolioId));
-    //     return result.unwrap().map(ProjectModel.fromDto);
-    // }
+    @Query(() => [ProjectModel], { name: 'projects' })
+    async getProjects(
+        @Args('portfolioId', { type: () => String }) portfolioId: string
+    ) {
+        const result = await this.queryBus.execute(ProjectFindManyQuery.create(portfolioId));
+        return result.unwrap().map(ProjectModel.fromDto);
+    }
 
-    // @Mutation(() => CreatedModel, { name: 'createProject' })
-    // async createUser(
-    //     @Args('input', { type: () => CreateProjectInput }) input: CreateProjectInput
-    // ) {
-    //     const projectResult = await this.commandBus.execute(ProjectCreateCommand.create(input));
-    //     return CreatedModel.create(projectResult.unwrap());
-    // }
+    @Mutation(() => CreatedModel, { name: 'createProject' })
+    async createUser(
+        @Args('input', { type: () => CreateProjectInput }) input: CreateProjectInput
+    ) {
+        const projectResult = await this.commandBus.execute(ProjectCreateCommand.create(input));
+        return CreatedModel.create(projectResult.unwrap());
+    }
 
-    // @Mutation(() => OperationStatusModel, { name: 'deleteProject' })
-    // async deleteSkill(
-    //     @Args('projectId', { type: () => String }) projectId: string
-    // ) {
-    //     const result = await this.commandBus.execute(ProjectDeleteCommand.create(projectId));
-    //     return OperationStatusModel.fromResult(result);
-    // }
+    @Mutation(() => OperationStatusModel, { name: 'deleteProject' })
+    async deleteSkill(
+        @Args('projectId', { type: () => String }) projectId: string
+    ) {
+        const result = await this.commandBus.execute(ProjectDeleteCommand.create(projectId));
+        return OperationStatusModel.fromResult(result);
+    }
 }
