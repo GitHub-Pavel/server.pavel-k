@@ -18,6 +18,7 @@ import { ProjectModule } from './areas/project/module';
       driver: ApolloDriver,
       autoSchemaFile: true,
       playground: true,
+      introspection: true,
     }),
     PrismaModule,
     PortfolioModule,
