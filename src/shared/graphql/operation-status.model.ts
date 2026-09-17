@@ -13,21 +13,25 @@ export class OperationStatusModel {
     @Field(() => String)
     status: string;
 
-    constructor(status: string) {
+    @Field(() => String, { nullable: true })
+    message?: string;
+
+    constructor(status: string, message?: string) {
         this.status = status;
+        this.message = message;
     }
 
     static success(): OperationStatusModel {
         return new OperationStatusModel(OperationStatus.SUCCESS);
     }
 
-    static error(): OperationStatusModel {
-        return new OperationStatusModel(OperationStatus.ERROR);
+    static error(message: string): OperationStatusModel {
+        return new OperationStatusModel(OperationStatus.ERROR, message);
     }
 
     static fromResult<T>(result: Result<T, AppError>): OperationStatusModel {
-        if (result.isErr) {
-            return OperationStatusModel.error();
+        if (result.isErr && result.error) {
+            return OperationStatusModel.error(result.error.message);
         }
 
         return OperationStatusModel.success();
